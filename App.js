@@ -13,8 +13,8 @@ const App = () => {
   const Stack = createNativeStackNavigator();
   const [itensCarrinho, setItensCarrinho] = useState([]);
 
-  const addItemToCart = (id) => {
-    const product = getProduct(id);
+  const addItemToCart = async (id) => {
+    const product = await getProduct(id); // Aguarda o produto
     setItensCarrinho((prevItems) => {
       const item = prevItems.find((item) => item.id == id);
       if (!item) {
@@ -29,7 +29,7 @@ const App = () => {
       } else {
         return prevItems.map((item) => {
           if (item.id == id) {
-            item.qty++;
+            return { ...item, qty: item.qty + 1 };
           }
           return item;
         });

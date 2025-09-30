@@ -3,7 +3,6 @@ import React from "react";
 import { View, Text, FlatList, Button, StyleSheet } from "react-native";
 
 export const Cart = ({ items, addItemToCart, removeItemFromCart, getTotalPrice }) => {
-  console.log(items)
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Seu Carrinho</Text>
