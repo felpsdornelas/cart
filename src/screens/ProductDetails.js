@@ -26,7 +26,7 @@ export const ProductDetails = ({ route, addItemToCart }) => {
 	}, [productId]);
 
 	function onAddToCart() {
-		addItemToCart(product.id);
+		addItemToCart(product);
 	}
 
 	return (
@@ -37,7 +37,7 @@ export const ProductDetails = ({ route, addItemToCart }) => {
 					<Text style={styles.name}>{product.name}</Text>
 					<Text style={styles.price}>{numberFormat(product.price)}</Text>
 					<Text style={styles.description}>{product.description}</Text>
-					<Button color={"red"} onPress={onAddToCart} title="Comprar" />
+					<Button color={"red"} onPress={() => addItemToCart(product.id)} title="Comprar" />
 				</View>
 			</ScrollView>
 		</View>

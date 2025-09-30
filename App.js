@@ -8,6 +8,7 @@ import { CartIcon } from "./src/components/CartIcon";
 import { useState } from "react";
 import { getProduct } from "./src/services/productsService";
 
+
 const App = () => {
   const Stack = createNativeStackNavigator();
   const [itensCarrinho, setItensCarrinho] = useState([]);
@@ -33,6 +34,19 @@ const App = () => {
           return item;
         });
       }
+    });
+  };
+
+  const removeItemFromCart = (id) => {
+    setItensCarrinho((prevItems) => {
+      return prevItems
+        .map((item) => {
+          if (item.id == id) {
+            return { ...item, qty: item.qty - 1 };
+          }
+          return item;
+        })
+        .filter((item) => item.qty > 0);
     });
   };
 
@@ -71,10 +85,10 @@ const App = () => {
           options={({ navigation }) => ({
             title: "Meu carrinho",
             headerTitleStyle: styles.headerTitle,
-            headerRight: () => <CartIcon navigation={navigation} getItemsCount={getItemsCount} />,
+            headerRight: () => <CartIcon navigation={navigation} getItemsCount={getItemsCount}  />,
           })}
         >
-          {(props) => <Cart {...props} items={itensCarrinho} getTotalPrice={getTotalPrice} />}
+          {(props) => <Cart {...props} items={itensCarrinho} addItemToCart={addItemToCart} removeItemFromCart={removeItemFromCart} getTotalPrice={getTotalPrice} />}
         </Stack.Screen>
       </Stack.Navigator>
     </NavigationContainer>

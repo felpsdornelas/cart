@@ -2,6 +2,7 @@ import { Text, Image, View, StyleSheet, TouchableOpacity } from "react-native";
 import { numberFormat } from "../services/numberFormat";
 
 export const Product = ({ name, price, image, onPress }) => {
+	
 	return (
 		<TouchableOpacity style={styles.card} onPress={onPress}>
 			<Image
